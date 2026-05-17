@@ -430,6 +430,25 @@
             font-size: 1rem;
         }
 
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .contact-links a {
+            color: #a1a1aa;
+            transition: color 180ms ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--text);
+        }
+
         .location {
             margin-top: 22px;
             color: var(--muted);
@@ -717,7 +736,12 @@
                 <p class="section-label">// start a project</p>
                 <h2>Have something to build?</h2>
                 <p>I'm selective about the projects I take on. Which means the ones I do, I take seriously. Let's talk.</p>
-                <a class="button" href="mailto:oliveisfruitful@gmail.com">Send a Message →</a>
+                <a class="button" href="https://wa.me/2347016300834" target="_blank" rel="noopener">Send a Message →</a>
+                <div class="contact-links">
+                    <a href="tel:+2347016300834">+234 701 630 0834</a>
+                    <span>·</span>
+                    <a href="mailto:oliveisfruitful@gmail.com">oliveisfruitful@gmail.com</a>
+                </div>
                 <div class="location">Built in Kaduna, Nigeria 🇳🇬</div>
             </div>
         </section>
