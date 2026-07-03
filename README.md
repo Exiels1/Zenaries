@@ -1,2 +1,1 @@
-﻿# Quantumshade.netlify.app
 
