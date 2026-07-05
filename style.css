@@ -1203,3 +1203,65 @@ button, .contact-section button, .booking-form button {
   background-color: #00fff7;
   box-shadow: 0 0 6px #00fff7;
 }
+
+/* ── Project card upgrades: status badges + screenshot previews ── */
+.project-card {
+    position: relative;
+    padding-top: 44px;
+}
+
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.status-live {
+    background: rgba(0, 255, 170, 0.12);
+    color: #00ffaa;
+    border: 1px solid rgba(0, 255, 170, 0.4);
+}
+
+.status-dev {
+    background: rgba(255, 170, 0, 0.12);
+    color: #ffaa00;
+    border: 1px solid rgba(255, 170, 0, 0.4);
+}
+
+.project-screens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    justify-content: center;
+}
+
+.project-screens img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-screens img:hover {
+    transform: scale(1.03);
+    border-color: rgba(0, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .project-screens img {
+      max-width: 100%;
+  }
+  .status-badge {
+      font-size: 0.65em;
+      padding: 3px 8px;
+  }
+}

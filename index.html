@@ -340,6 +340,74 @@
             cursor: default;
         }
 
+        .project-screens {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .project-screens img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            transition: transform 180ms ease, border-color 180ms ease;
+        }
+
+        .project-screens img:hover {
+            transform: scale(1.03);
+            border-color: var(--accent);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-copy p {
+            margin: 0 0 18px;
+            color: #a1a1aa;
+            font-size: 1.05rem;
+        }
+
+        .about-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-facts {
+            display: grid;
+            gap: 14px;
+        }
+
+        .about-fact {
+            padding: 20px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .about-fact .num {
+            font-family: var(--mono);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .about-fact .label {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 860px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -607,6 +675,7 @@
             <a class="logo" href="#home" aria-label="Zenaries home">⚡ Zenaries</a>
             <nav aria-label="Primary navigation">
                 <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
                     <li><a href="#work">Work</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -625,7 +694,36 @@
                 <p class="hero-copy">From AI platforms to real-time communication tools — Zenaries ships things that are real, functional, and built to last.</p>
                 <div class="hero-actions">
                     <a class="button" href="#work">See My Work</a>
-                    <a class="button ghost" href="https://xenobiz-1.onrender.com" target="_blank" rel="noopener">View Live Product →</a>
+                    <a class="button ghost" href="https://xenobiz-production.up.railway.app" target="_blank" rel="noopener">View Live Product →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="section-head fade-up">
+                <p class="section-label">// about</p>
+                <h2>Who's building this.</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-copy fade-up">
+                    <p>Zenaries is a software studio built from Kaduna, Nigeria — founded by Olive Otache (Exiels), a self-taught developer who builds across AI platforms, real-time communication tools, and practical automation software.</p>
+                    <p>Every product here started as a real problem — a teacher spending hours typing exam questions, a business owner needing an assistant that never sleeps, a school with no working results portal. Zenaries builds the tool, ships it, and moves on to the next one.</p>
+                    <p>Not agency work. Not templates. Products that get used.</p>
+                </div>
+                <div class="about-facts fade-up" style="--delay: 90ms;">
+                    <div class="about-fact">
+                        <div class="num">6+</div>
+                        <div class="label">Products shipped and live</div>
+                    </div>
+                    <div class="about-fact">
+                        <div class="num">2</div>
+                        <div class="label">Currently in development</div>
+                    </div>
+                    <div class="about-fact">
+                        <div class="num">Kaduna</div>
+                        <div class="label">Based in Nigeria, building for the world</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -648,10 +746,76 @@
                         <li>Flask</li>
                         <li>Groq AI</li>
                     </ul>
-                    <a class="project-link" href="https://xenobiz-1.onrender.com" target="_blank" rel="noopener">Open product →</a>
+                    <a class="project-link" href="https://xenobiz-production.up.railway.app" target="_blank" rel="noopener">Open product →</a>
                 </article>
 
                 <article class="card project-card fade-up" style="--delay: 90ms;">
+                    <div class="project-top">
+                        <h3>Question Parser</h3>
+                        <span class="badge live">LIVE · SOLD</span>
+                    </div>
+                    <p>Upload a teacher's exam document and get a fully auto-graded Google Form generated in minutes. Deployed for a secondary school.</p>
+                    <div class="project-screens">
+                        <img src="image/projects/question_parser_1.png" alt="Question Parser upload screen" loading="lazy">
+                        <img src="image/projects/question_parser_3.png" alt="Question Parser generated script" loading="lazy">
+                    </div>
+                    <ul class="tags" aria-label="Technologies used">
+                        <li>Python</li>
+                        <li>Flask</li>
+                        <li>Groq AI</li>
+                    </ul>
+                    <span class="project-link disabled">Private demo on request</span>
+                </article>
+
+                <article class="card project-card fade-up" style="--delay: 135ms;">
+                    <div class="project-top">
+                        <h3>Void</h3>
+                        <span class="badge live">LIVE</span>
+                    </div>
+                    <p>A command-style Chrome new-tab replacement — clock, weather, quick launch, notes, todos, focus timer, and themes.</p>
+                    <div class="project-screens">
+                        <img src="image/projects/void_extension.png" alt="Void Chrome extension dashboard" loading="lazy">
+                    </div>
+                    <ul class="tags" aria-label="Technologies used">
+                        <li>JavaScript</li>
+                        <li>Chrome Extension API</li>
+                    </ul>
+                    <span class="project-link disabled">Personal project</span>
+                </article>
+
+                <article class="card project-card fade-up" style="--delay: 180ms;">
+                    <div class="project-top">
+                        <h3>Xeno Code</h3>
+                        <span class="badge live">LIVE</span>
+                    </div>
+                    <p>A custom agentic CLI coding assistant powered by Groq (Llama 3.3 70B). Reads project files automatically and helps you build from the terminal.</p>
+                    <div class="project-screens">
+                        <img src="image/projects/xeno_code.png" alt="Xeno Code terminal interface" loading="lazy">
+                    </div>
+                    <ul class="tags" aria-label="Technologies used">
+                        <li>Node.js</li>
+                        <li>Groq AI</li>
+                    </ul>
+                    <span class="project-link disabled">Personal tool</span>
+                </article>
+
+                <article class="card project-card fade-up" style="--delay: 225ms;">
+                    <div class="project-top">
+                        <h3>Exiels Share</h3>
+                        <span class="badge live">LIVE</span>
+                    </div>
+                    <p>A LAN-based file transfer app — drop a file, it sends instantly to every device on the same network. No internet, no cables.</p>
+                    <div class="project-screens">
+                        <img src="image/projects/exiels_share.png" alt="Exiels Share interface" loading="lazy">
+                    </div>
+                    <ul class="tags" aria-label="Technologies used">
+                        <li>Node.js</li>
+                        <li>WebSockets</li>
+                    </ul>
+                    <span class="project-link disabled">Personal project</span>
+                </article>
+
+                <article class="card project-card fade-up" style="--delay: 270ms;">
                     <div class="project-top">
                         <h3>UFM Testimony</h3>
                         <span class="badge live">LIVE</span>
@@ -665,19 +829,21 @@
                     <a class="project-link" href="https://ufmtestimony.netlify.app" target="_blank" rel="noopener">Open product →</a>
                 </article>
 
-                <article class="card project-card fade-up" style="--delay: 180ms;">
+                <article class="card project-card fade-up" style="--delay: 315ms;">
                     <div class="project-top">
-                        <h3>O! Kraftify</h3>
+                        <h3>O! Kraft</h3>
                         <span class="badge red">BUILDING</span>
                     </div>
-                    <p>E-commerce and brand site for a Nigerian creative business.</p>
+                    <p>Catering and confectionery brand site — online menu, event booking, and quick ordering for a family-run bakery business in Abuja.</p>
                     <ul class="tags" aria-label="Technologies used">
-                        <li>In Progress</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JS</li>
                     </ul>
-                    <span class="project-link disabled">In development</span>
+                    <span class="project-link disabled">Client project — not yet public</span>
                 </article>
 
-                <article class="card project-card fade-up" style="--delay: 270ms;">
+                <article class="card project-card fade-up" style="--delay: 360ms;">
                     <div class="project-top">
                         <h3>Quantum Chat</h3>
                         <span class="badge blue">BETA</span>

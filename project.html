@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Projects | QuantumShade</title>
+    <title>Projects | Zenaries</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="image/favicon.ico" sizes="any">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <meta name="description" content="Explore QuantumShade's latest projects — innovation meets bold execution.">
-    <meta name="keywords" content="QuantumShade, Projects, Chatbox, Web Development, AI, Design">
-    <meta name="author" content="QuantumShade">
+    <meta name="description" content="Explore Zenaries Tech's latest projects — real products, built and shipped from Kaduna, Nigeria.">
+    <meta name="keywords" content="Zenaries, Zenaries Tech, Projects, XenoBiz, Question Parser, Web Development, AI, Design">
+    <meta name="author" content="Zenaries Tech">
 </head>
 <body class="home-body" onload="greetUser()">
 
@@ -32,7 +32,7 @@
 
 <header>
     <nav>
-        <img src="logo1.svg" alt="QuantumShade Logo" class="site-logo">
+        <img src="logo1.svg" alt="Zenaries Logo" class="site-logo">
         <ul class="navbar">
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
@@ -45,28 +45,90 @@
 
 <main class="projects-section fade-in">
     <h1>💡 Our Featured Projects</h1>
-    <p class="highlight">Pushing boundaries. Building with vision.</p>
+    <p class="highlight">Real products. Built and shipped from Kaduna, Nigeria.</p>
 
     <div class="projects-grid">
 
-        <div class="project-card">
+        <!-- XenoBiz -->
+        <div class="project-card project-card-live">
+            <span class="status-badge status-live">Live</span>
             <i class="fas fa-robot project-icon"></i>
-            <h3>Private AI manager</h3>
-            <p>A fully functional, secure AI platform with user profiles, real-time messaging, File upload, Speech Reg, and lots more.</p>
-            <a href="https://xenobiz.onrender.com" target="_blank" class="btn-primary">View Project</a>
+            <h3>XenoBiz</h3>
+            <p>An AI business manager that handles customer conversations, tracks business health, and surfaces smart decisions — no team required. Available as a web app and installable Android app.</p>
+            <a href="https://xenobiz-production.up.railway.app/index" target="_blank" class="btn-primary">View Live Demo</a>
         </div>
 
-        <div class="project-card">
-            <i class="fas fa-globe project-icon"></i>
-            <h3>QuantumShade Website</h3>
-            <p>The official QuantumShade site — crafted with custom code to reflect bold design and technical excellence.</p>
-            <a href="index.html" class="btn-primary">Visit Site</a>
+        <!-- Question Parser -->
+        <div class="project-card project-card-live">
+            <span class="status-badge status-live">Live &middot; Sold</span>
+            <i class="fas fa-file-alt project-icon"></i>
+            <h3>Question Parser</h3>
+            <p>Upload a teacher's exam document (.docx or .pdf) and get a fully auto-graded Google Form generated in minutes — no manual typing, no manual grading. Currently deployed for a secondary school.</p>
+            <div class="project-screens">
+                <img src="image/projects/question_parser_1.png" alt="Question Parser upload screen" loading="lazy">
+                <img src="image/projects/question_parser_2.png" alt="Question Parser file selected" loading="lazy">
+                <img src="image/projects/question_parser_3.png" alt="Question Parser generated Apps Script and preview" loading="lazy">
+            </div>
         </div>
 
-        <div class="project-card">
-            <i class="fas fa-cogs project-icon"></i>
-            <h3>Custom Tools & Widgets</h3>
-            <p>Interactive tools and web utilities tailored to client needs. Stay tuned for the official launch.</p>
+        <!-- Void -->
+        <div class="project-card project-card-live">
+            <span class="status-badge status-live">Live</span>
+            <i class="fas fa-terminal project-icon"></i>
+            <h3>Void</h3>
+            <p>A command-style Chrome new-tab replacement — clock, weather, quick launch shortcuts, notes, todos, a focus timer, and themes, all controlled from a single command bar.</p>
+            <div class="project-screens">
+                <img src="image/projects/void_extension.png" alt="Void Chrome extension new tab dashboard" loading="lazy">
+                <img src="image/projects/void_commands.png" alt="Void command list" loading="lazy">
+            </div>
+        </div>
+
+        <!-- Xeno Code -->
+        <div class="project-card project-card-live">
+            <span class="status-badge status-live">Live</span>
+            <i class="fas fa-code project-icon"></i>
+            <h3>Xeno Code</h3>
+            <p>A custom agentic CLI coding assistant powered by Groq (Llama 3.3 70B). Reads project files automatically, understands context, and helps you build directly from the terminal.</p>
+            <div class="project-screens">
+                <img src="image/projects/xeno_code.png" alt="Xeno Code terminal interface" loading="lazy">
+            </div>
+        </div>
+
+        <!-- Exiels Share -->
+        <div class="project-card project-card-live">
+            <span class="status-badge status-live">Live</span>
+            <i class="fas fa-share-alt project-icon"></i>
+            <h3>Exiels Share</h3>
+            <p>A LAN-based file transfer app — drop a file, and it sends instantly to every device connected on the same network. No internet, no cables, no cloud upload required.</p>
+            <div class="project-screens">
+                <img src="image/projects/exiels_share.png" alt="Exiels Share LAN file transfer interface" loading="lazy">
+            </div>
+        </div>
+
+        <!-- UFM Testimony -->
+        <div class="project-card project-card-live">
+            <span class="status-badge status-live">Live</span>
+            <i class="fas fa-church project-icon"></i>
+            <h3>UFM Testimony</h3>
+            <p>A dedicated site built for sharing and preserving community testimonies — clean, simple, and easy for non-technical users to navigate.</p>
+            <a href="https://ufmtestimony.netlify.app" target="_blank" class="btn-primary">View Live Site</a>
+        </div>
+
+        <!-- The Calling -->
+        <div class="project-card project-card-dev">
+            <span class="status-badge status-dev">In Development</span>
+            <i class="fas fa-users project-icon"></i>
+            <h3>The Calling</h3>
+            <p>A builder community platform — co-founded with Kester — designed around Drops, Trails, Comments, and Signals. Built to protect authentic human connection between creators.</p>
+            <button class="btn-disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- QuantumChat -->
+        <div class="project-card project-card-dev">
+            <span class="status-badge status-dev">In Development</span>
+            <i class="fas fa-comments project-icon"></i>
+            <h3>QuantumChat</h3>
+            <p>A real-time messaging platform with direct messages, WebRTC voice calling, and Cloudinary-powered profile pictures — built to be a lighter, faster alternative to mainstream chat apps.</p>
             <button class="btn-disabled" disabled>Coming Soon</button>
         </div>
 
@@ -74,7 +136,7 @@
 </main>
 
 <footer>
-    <p>&copy; 2026 QuantumShade. All rights reserved.</p>
+    <p>&copy; 2026 Zenaries Tech. All rights reserved.</p>
 </footer>
 
 <script>
