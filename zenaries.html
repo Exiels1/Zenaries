@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zenaries — A studio that just opened</title>
+<meta name="description" content="Zenaries is a software studio out of Abuja, Nigeria, run by one developer. Web platforms, AI integration, and product builds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0D13;
+    --surface: #10141C;
+    --line: #232A38;
+    --text: #EDEFF4;
+    --text-muted: #8B93A6;
+    --blue: #3E63FF;
+    --blue-dim: #1C2C6B;
+    --red: #E8432F;
+    --radius: 3px;
+    --gutter: clamp(20px, 5vw, 64px);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: inherit; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  header.nav, main, footer { position: relative; z-index: 1; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* ---- Nav ---- */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: rgba(10, 13, 19, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .wordmark .dot {
+    width: 9px; height: 9px;
+    background: var(--blue);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  nav.links { display: flex; align-items: center; gap: 32px; }
+  nav.links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    transition: color 0.15s ease;
+    position: relative;
+  }
+  nav.links a:hover, nav.links a:focus-visible { color: var(--text); }
+  nav.links a:not(.nav-cta)::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: -19px;
+    height: 2px;
+    background: var(--blue);
+    transition: right 0.2s ease;
+  }
+  nav.links a.is-active { color: var(--text); }
+  nav.links a.is-active::after { right: 0; }
+  .nav-cta {
+    color: var(--text) !important;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 8px 16px !important;
+  }
+  .nav-cta:hover { border-color: var(--blue); }
+  @media (max-width: 720px) {
+    nav.links a:not(.nav-cta) { display: none; }
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    padding: clamp(56px, 9vw, 108px) 0 clamp(48px, 8vw, 96px);
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(32px, 6vw, 72px);
+    align-items: center;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -20px; left: 0; right: 0; bottom: -20px;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 46px 46px;
+    opacity: 0.35;
+    mask-image: radial-gradient(ellipse 80% 60% at 30% 30%, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 30% 30%, black 0%, transparent 75%);
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  }
+  .hero p.lede {
+    margin-top: 22px;
+    max-width: 46ch;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+  .hero .ctas { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: var(--radius);
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: #5678FF; transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--text-muted); transform: translateY(-1px); }
+
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.6s ease 0.15s forwards;
+  }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  .terminal-bar {
+    display: flex;
+    gap: 6px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .terminal-bar span {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #2A3140;
+  }
+  .terminal-body {
+    padding: 22px 20px 26px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    color: #C7CCD8;
+  }
+  .terminal-body .prompt { color: var(--blue); }
+  .terminal-body .cmd { color: var(--text); }
+  .terminal-row { display: flex; gap: 14px; margin-top: 12px; }
+  .terminal-row .k { color: var(--text-muted); width: 84px; flex-shrink: 0; }
+  .terminal-row .v { color: var(--text); }
+  .terminal-row .v.on { color: var(--blue); }
+  .terminal-row .v.on::after {
+    content: "";
+    display: inline-block;
+    width: 7px; height: 14px;
+    margin-left: 6px;
+    background: var(--blue);
+    vertical-align: -2px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Section shell ---- */
+  section { padding: clamp(56px, 8vw, 96px) 0; border-top: 1px solid var(--line); }
+  .kicker {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 48ch;
+  }
+  h2.section-title {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-top: 10px;
+    max-width: 22ch;
+  }
+  .section-head { margin-bottom: clamp(36px, 6vw, 56px); }
+
+  /* ---- Services ---- */
+  .service-list { border-top: 1px solid var(--line); }
+  .service {
+    display: grid;
+    grid-template-columns: 1fr 2.1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .service h3 { font-size: 1.15rem; }
+  .service p { color: var(--text-muted); max-width: 54ch; }
+  @media (max-width: 720px) {
+    .service { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---- Work ---- */
+  .work-item {
+    padding: 30px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px 28px;
+    align-items: start;
+  }
+  .work-item:first-child { border-top: 1px solid var(--line); }
+  .work-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--blue);
+    padding: 4px 8px;
+    border: 1px solid var(--blue-dim);
+    border-radius: var(--radius);
+    white-space: nowrap;
+    height: fit-content;
+  }
+  .work-body h3 { font-size: 1.25rem; margin-bottom: 8px; }
+  .work-body p { color: var(--text-muted); max-width: 58ch; }
+  .work-stack { margin-top: 12px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; }
+  .work-link {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--blue);
+    white-space: nowrap;
+    height: fit-content;
+    align-self: center;
+  }
+  .work-link:hover { color: var(--blue); }
+  @media (max-width: 720px) {
+    .work-item { grid-template-columns: 1fr; }
+    .work-link { justify-self: start; }
+  }
+
+  .quote {
+    margin-top: clamp(36px, 5vw, 52px);
+    padding: 26px clamp(20px, 3vw, 32px);
+    border-left: 2px solid var(--red);
+    background: var(--surface);
+    max-width: 62ch;
+  }
+  .quote p { font-size: 1.05rem; }
+  .quote cite { display: block; margin-top: 14px; color: var(--text-muted); font-style: normal; font-size: 0.9rem; }
+
+  /* ---- Manifesto ---- */
+  .manifesto { max-width: 66ch; }
+  .manifesto p { color: var(--text-muted); font-size: 1.05rem; margin-top: 16px; }
+  .manifesto p strong { color: var(--text); font-weight: 500; }
+
+  /* ---- Book a call ---- */
+  .book-shell {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(32px, 6vw, 64px);
+  }
+  .book-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: clamp(22px, 3vw, 32px);
+  }
+  .book-panel h3 {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .day-tabs-wrap {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .day-tabs-wrap::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 4px; right: 0;
+    width: 28px;
+    background: linear-gradient(90deg, transparent, var(--surface));
+    pointer-events: none;
+  }
+  .day-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+  .day-tabs::-webkit-scrollbar { height: 4px; }
+  .day-tabs::-webkit-scrollbar-track { background: transparent; }
+  .day-tabs::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+  .day-tabs::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  .day-tab {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    padding: 9px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    opacity: 0;
+    animation: dayIn 0.4s ease forwards;
+    animation-delay: calc(var(--i, 0) * 0.06s);
+  }
+  @keyframes dayIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes dayPop { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
+  .day-tab:hover { color: var(--text); transform: translateY(-1px); }
+  .day-tab.is-selected { color: var(--text); border-color: var(--blue); background: var(--blue-dim); animation: dayIn 0.4s ease forwards, dayPop 0.28s ease; }
+  .slot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .slot-btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .slot-btn:hover { border-color: var(--text-muted); }
+  .slot-btn.is-selected { border-color: var(--blue); background: var(--blue-dim); }
+  .book-note { margin-top: 18px; font-size: 0.82rem; color: var(--text-muted); }
+
+  .book-form { display: flex; flex-direction: column; gap: 14px; }
+  .book-form label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .book-form input, .book-form textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    transition: border-color 0.15s ease;
+  }
+  .book-form input:focus, .book-form textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+  .book-form textarea { resize: vertical; min-height: 72px; }
+  .book-summary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    min-height: 18px;
+  }
+  .book-summary strong { color: var(--blue); font-weight: 500; }
+  .book-submit {
+    align-self: flex-start;
+  }
+  .book-submit[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  @media (max-width: 860px) {
+    .book-shell { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Contact ---- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(32px, 6vw, 64px);
+    align-items: end;
+  }
+  .contact-grid p.lede { color: var(--text-muted); max-width: 42ch; margin-top: 16px; font-size: 1.05rem; }
+  .contact-methods { display: flex; flex-direction: column; gap: 18px; }
+  .contact-methods a {
+    text-decoration: none;
+    display: block;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .contact-methods a:hover { border-color: var(--blue); }
+  .contact-methods .label { display: block; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 4px; }
+  .contact-methods .value { font-family: 'IBM Plex Mono', monospace; font-size: 0.98rem; }
+  @media (max-width: 860px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .terminal { animation: none; opacity: 1; transform: none; }
+    .terminal-row .v.on::after { animation: none; }
+    .day-tab { animation: none; opacity: 1; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="wordmark"><span class="dot"></span>Zenaries</a>
+    <nav class="links" id="navLinks">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#book" class="nav-cta">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap" style="border-top: none;">
+    <div>
+      <h1>Zenaries just opened its doors.<br>We're already picky about what we build.</h1>
+      <p class="lede">A software studio run by one developer, building for anyone who's ready — wherever they are. If we take your project, you get the same person from the first call to the last deploy — not a handoff between departments.</p>
+      <div class="ctas">
+        <a href="#book" class="btn btn-primary">Book a call</a>
+        <a href="#work" class="btn btn-ghost">See the work</a>
+      </div>
+    </div>
+    <div class="terminal" role="img" aria-label="Terminal window showing studio details">
+      <div class="terminal-bar"><span></span><span></span><span></span></div>
+      <div class="terminal-body">
+        <div><span class="prompt">zenaries@world</span><span class="cmd"> ~ % whoami</span></div>
+        <div class="terminal-row"><span class="k">founder</span><span class="v">Olive "Exiels" Otache</span></div>
+        <div class="terminal-row"><span class="k">based</span><span class="v">Worldwide — based in Abuja, NG</span></div>
+        <div class="terminal-row"><span class="k">opened</span><span class="v">March 2026</span></div>
+        <div class="terminal-row"><span class="k">status</span><span class="v on">taking new projects</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">What we build</p>
+        <h2 class="section-title">Three kinds of work, done properly instead of broadly.</h2>
+      </div>
+      <div class="service-list">
+        <div class="service">
+          <h3>Web platforms</h3>
+          <p>Custom sites and web apps built to load fast and hold up under real traffic — not a template with your logo swapped in.</p>
+        </div>
+        <div class="service">
+          <h3>AI integration</h3>
+          <p>Chat, analysis, and automation wired directly into your product, running on models like Groq's Llama stack — not a bolted-on widget.</p>
+        </div>
+        <div class="service">
+          <h3>Product builds</h3>
+          <p>From a rough idea to something people actually use: scoped, built, deployed, and handed off with the source.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Live right now</p>
+        <h2 class="section-title">What's already shipped.</h2>
+      </div>
+
+      <div class="work-item">
+        <span class="work-status">LIVE</span>
+        <div class="work-body">
+          <h3>XenoBiz</h3>
+          <p>An AI business-intelligence platform. Feeds a business's data through an LLM and hands back dashboards and PDF reports instead of raw spreadsheets.</p>
+          <div class="work-stack">Python · Flask · Groq AI</div>
+        </div>
+        <a class="work-link" href="https://xenobiz-1.onrender.com" target="_blank" rel="noopener">Open product</a>
+      </div>
+
+      <div class="work-item">
+        <span class="work-status">LIVE</span>
+        <div class="work-body">
+          <h3>Question Parser</h3>
+          <p>Takes a teacher's exam document and turns it into an auto-graded Google Form in minutes. Deployed for a secondary school that was losing hours to manual grading.</p>
+          <div class="work-stack">Python · Flask · Groq AI</div>
+        </div>
+        <a class="work-link" href="#contact">Demo on request</a>
+      </div>
+
+      <div class="work-item">
+        <span class="work-status">LIVE</span>
+        <div class="work-body">
+          <h3>UFM Testimony</h3>
+          <p>A testimony platform built for Unquenchable Fire Ministry — live, in use, and handling their congregation's submissions.</p>
+          <div class="work-stack">HTML · CSS · JS</div>
+        </div>
+        <a class="work-link" href="https://ufmtestimony.netlify.app" target="_blank" rel="noopener">Open product</a>
+      </div>
+
+      <div class="quote">
+        <p>"Zenaries built our testimony platform and delivered exactly what we needed."</p>
+        <cite>— Unquenchable Fire Ministry</cite>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap manifesto">
+      <p class="kicker">How we work</p>
+      <h2 class="section-title">Small on purpose.</h2>
+      <p>There's no account manager, no handoff between departments, and no junior dev quietly learning on your budget. <strong>You talk to the person building your product</strong>, from the first message to the last deploy.</p>
+      <p>That's the trade-off of a studio this size — fewer projects running at once, and more attention on each one. We're new enough to still be careful about what we say yes to.</p>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Book a call</p>
+        <h2 class="section-title">Pick a time that works.</h2>
+      </div>
+      <div class="book-shell">
+        <div class="book-panel">
+          <h3>Day</h3>
+          <div class="day-tabs-wrap">
+            <div class="day-tabs" id="dayTabs"></div>
+          </div>
+          <h3>Time (WAT)</h3>
+          <div class="slot-grid" id="slotGrid"></div>
+          <p class="book-note">30-minute intro call over WhatsApp or a call link, whichever's easier for you. We'll confirm within a day.</p>
+        </div>
+        <div class="book-panel">
+          <form class="book-form" id="bookForm">
+            <div>
+              <label for="bookName">Name</label>
+              <input type="text" id="bookName" placeholder="Your name" autocomplete="name">
+            </div>
+            <div>
+              <label for="bookAbout">What's this about</label>
+              <textarea id="bookAbout" placeholder="A line or two on what you're trying to build"></textarea>
+            </div>
+            <p class="book-summary" id="bookSummary">Pick a day and time to continue.</p>
+            <button type="submit" class="btn btn-primary book-submit" id="bookSubmit" disabled>Request this time on WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="kicker">Start a project</p>
+        <h2 class="section-title">Have something to build?</h2>
+        <p class="lede">Tell us what you're trying to solve. If it's a fit, we'll say so honestly — and if it's not, we'll say that too.</p>
+      </div>
+      <div class="contact-methods">
+        <a href="mailto:zenariestech@gmail.com">
+          <span class="label">Email</span>
+          <span class="value">zenariestech@gmail.com</span>
+        </a>
+        <a href="https://wa.me/2347016300834" target="_blank" rel="noopener">
+          <span class="label">WhatsApp</span>
+          <span class="value">+234 701 630 0834</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Zenaries — Abuja, Nigeria</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---- Book a call: day/time picker -> WhatsApp handoff ----
+  var TIMES = ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM"];
+  var dayTabsEl = document.getElementById('dayTabs');
+  var slotGridEl = document.getElementById('slotGrid');
+  var summaryEl = document.getElementById('bookSummary');
+  var submitBtn = document.getElementById('bookSubmit');
+  var form = document.getElementById('bookForm');
+
+  var days = [];
+  var d = new Date();
+  while (days.length < 6) {
+    d.setDate(d.getDate() + 1);
+    var wd = d.getDay();
+    if (wd !== 0 && wd !== 6) {
+      days.push(new Date(d));
+    }
+  }
+
+  var selectedDayIdx = null;
+  var selectedTime = null;
+  var fmtDay = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+  days.forEach(function (day, idx) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'day-tab';
+    btn.style.setProperty('--i', idx);
+    btn.textContent = fmtDay.format(day);
+    btn.addEventListener('click', function () {
+      selectedDayIdx = idx;
+      Array.prototype.forEach.call(dayTabsEl.children, function (c) { c.classList.remove('is-selected'); });
+      btn.classList.add('is-selected');
+      updateSummary();
+    });
+    dayTabsEl.appendChild(btn);
+  });
+
+  TIMES.forEach(function (time) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'slot-btn';
+    btn.textContent = time;
+    btn.addEventListener('click', function () {
+      selectedTime = time;
+      Array.prototype.forEach.call(slotGridEl.children, function (c) { c.classList.remove('is-selected'); });
+      btn.classList.add('is-selected');
+      updateSummary();
+    });
+    slotGridEl.appendChild(btn);
+  });
+
+  function updateSummary() {
+    if (selectedDayIdx !== null && selectedTime) {
+      summaryEl.innerHTML = 'Requesting <strong>' + fmtDay.format(days[selectedDayIdx]) + '</strong> at <strong>' + selectedTime + ' WAT</strong>';
+      submitBtn.disabled = false;
+    } else {
+      summaryEl.textContent = 'Pick a day and time to continue.';
+      submitBtn.disabled = true;
+    }
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (selectedDayIdx === null || !selectedTime) return;
+    var name = document.getElementById('bookName').value.trim();
+    var about = document.getElementById('bookAbout').value.trim();
+    var lines = [
+      "Hi Zenaries, I'd like to book a call.",
+      "",
+      "Day: " + fmtDay.format(days[selectedDayIdx]),
+      "Time: " + selectedTime + " WAT"
+    ];
+    if (name) lines.push("Name: " + name);
+    if (about) lines.push("About: " + about);
+    var text = encodeURIComponent(lines.join('\n'));
+    window.open('https://wa.me/2347016300834?text=' + text, '_blank', 'noopener');
+  });
+
+  // ---- Scroll-spy nav ----
+  var navLinks = document.querySelectorAll('#navLinks a[href^="#"]');
+  var sections = Array.prototype.map.call(navLinks, function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = '#' + entry.target.id;
+          navLinks.forEach(function (a) {
+            a.classList.toggle('is-active', a.getAttribute('href') === id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
